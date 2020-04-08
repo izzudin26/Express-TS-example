@@ -2,7 +2,8 @@ import express, { Application, Request, Response } from "express";
 import TodoRoute from "./route/route";
 import morgan from "morgan";
 import bodyParser from "body-parser";
-const port: number = 8000;
+require("dotenv").config();
+const port: any = process.env.PORT || 8080;
 
 class App {
   public app: Application;
