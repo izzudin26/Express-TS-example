@@ -13,6 +13,7 @@ class mainRoute implements IRouter {
     this.router.get("/:id", Controller.get);
     this.router.post("/", Controller.store);
     this.router.delete("/:id", Controller.destroy);
+    this.router.put("/:id", Controller.update);
   }
 }
 

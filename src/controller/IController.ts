@@ -5,6 +5,7 @@ interface IController {
   store(req: Request, res: Response): Promise<Response>;
   get(req: Request, res: Response): Promise<Response>;
   destroy(req: Request, res: Response): Promise<Response>;
+  update(Req: Request, res: Response): Promise<Response>;
 }
 
 export default IController;
