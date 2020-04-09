@@ -1,39 +1,33 @@
 import IController from "./IController";
 import { Request, Response } from "express";
-
-let data: Array<any> = [
-  {
-    id: 1,
-    nama: "ahmad",
-    umur: 12,
-  },
-  {
-    id: 2,
-    nama: "Bambang",
-    umur: 13,
-  },
-  {
-    id: 3,
-    nama: "Akira",
-    umur: 15,
-  },
-];
+const db = require("../../src/db/models");
 
 class MainController implements IController {
-  index(req: Request, res: Response): Response {
-    return res.send(data);
+  async index(req: Request, res: Response): Promise<Response> {
+    try {
+      let data = await db.BiodataTodo.findAll();
+      return res.send(data);
+    } catch (error) {
+      return res.send({ message: error });
+    }
   }
-  store(req: Request, res: Response): Response {
-    let { nama, umur } = req.body;
-    data.push({ nama, umur });
-    return res.send("Success store data");
+  async store(req: Request, res: Response): Promise<Response<any>> {
+    let { first_name, last_name, age } = req.body;
+    try {
+      let store = await db.BiodataTodo.create({
+        first_name,
+        last_name,
+        age,
+      });
+      return res.send({ message: "success", data: store });
+    } catch (error) {
+      return res.send({ message: error });
+    }
   }
-  get(req: Request, res: Response): Response {
-    let { id } = req.params;
-    let find = data.find((doc) => doc.id == id);
-    return res.send(find);
+  get(req: Request, res: Response): Promise<Response> {
+    throw new Error("Method not implemented.");
   }
-  destroy(req: Request, res: Response): Response {
+  destroy(req: Request, res: Response): Promise<Response> {
     throw new Error("Method not implemented.");
   }
 }

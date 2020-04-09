@@ -3,7 +3,7 @@ import TodoRoute from "./route/route";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 require("dotenv").config();
-const port: any = process.env.PORT || 8080;
+const port: any = process.env.PORT;
 
 class App {
   public app: Application;

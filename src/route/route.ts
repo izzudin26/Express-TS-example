@@ -12,6 +12,7 @@ class mainRoute implements IRouter {
     this.router.get("/", Controller.index);
     this.router.get("/:id", Controller.get);
     this.router.post("/", Controller.store);
+    this.router.delete("/:id", Controller.destroy);
   }
 }
 
